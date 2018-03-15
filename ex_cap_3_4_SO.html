@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Exercícios do cap. 3 e 4 de SO</title>
+</head>
+<body>
+	<h1>Exercícios do cap. 3 e 4 de SO</h1>
+	<h2>Aluno: Lucas Riêra Abbade, 1094</h2>
+	<ol>
+		<li>O que são Processos? Como são classificados? Qual a diferença entre um Processo e um Programa?
+			<p>Um processo é um programa em execução, pode ser um processo de kernel ou de usuário. A diferença do programa é que o programa é apenas um software armazenado no computador, o processo é quando se carrega aquele software na memória RAM e o executa.</p>
+		</li>
+		<li>Quais são os possíveis estados de um Processo? Explique sucintamente como o processo se encontra em cada estado.
+			<ul>Estados:
+				<li>Novo (<em>new</em>)
+					<p>Quando o processo está sendo criado, alocando recursos</p>
+				</li>
+				<li>Em execução (<em>running</em>)
+					<p>Instruções estão sendo executadas</p>
+				</li>
+				<li>Em espera (<em>waiting</em>)
+					<p>O processo está esperando que algum evento ocorra (ex.: esperando a finalização de uma operação IO)</p>
+				</li>
+				<li>Pronto (<em>ready</em>)
+					<p>O processo está esperando ser atribuído a um processador</p>
+				</li>
+				<li>Concluído (<em>terminated</em>)
+					<p>O processo terminou sua execução</p>
+				</li>
+			</ul>
+		</li>
+		<li>O que são Filas de <em>Scheduling</em>? Como são subdivididas?
+			<p>São filas do sistema operacional para organizar o escalonamento de processos.</p>
+			<ul>São divididas em:
+				<li><em>Job Queue</em>
+					<p>Composta por todos os programas do sistema que aguardam para serem alocados na RAM</p>
+				</li>
+				<li><em>Ready Queue</em>
+					<p>Processos que estão prontos na memória principal esperando execução</p>
+				</li>
+				<li><em>Device Queue</em> ou <em>IO Queue</em>
+					<p>Processos em espera por um dispositivo <em>IO</em></p>
+				</li>
+			</ul>
+		</li>
+		<li>O que você entende por Context Switching? E <em>Overhead</em>?
+			<p>Mudança de contexto é quando a CPU é alocada para outro processo, onde primeiro é necessário salvar o estado do processo anterior, para então restaurar o estado do processo à resumir sua execução.</p>
+			<p><em>Overhead</em> é um intervalo em que o processador não executa nenhuma tarefa útil.</p>
+		</li>
+		<li>Como o Sistema Operacional consegue gerenciar todos os processos em
+		execução de forma organizada? Que tipo de estrutura é mantida por ele a
+		fim de prover esta organização?
+			<p>Ele utiliza filas de <em>scheduling</em> para organizar os processos em execução e manter o paralelismo da melhor forma possível.</p>
+		</li>
+		<li>Como é estruturado um Processo na memória Principal?
+			<p>São estruturados como uma árvore, com os processos criados por um processo entrando como filhos dele.</p>
+		</li>
+		<li>Defina: Escalonador de Longo, Médio e Curto Prazo.
+			<ul>
+				<li>Escalonador de longo prazo:
+					<p>Determina quais processos serão admitidos para poderem executar no sistema.</p>
+				</li>
+				<li>Escalonador de médio prazo:
+					<p>Seleciona qual processo irá da memória para o <em>swap file</em> ou vice-versa.</p>
+				</li>
+				<li>Escalonador de curto prazo:
+					<p>Seleciona entre os processos que estão prontos para a execução e aloca a CPU para um deles.</p>
+				</li>
+			</ul>
+		</li>
+		<li>O que são processos filhos? Por quais razões um processo pai pode finalizar
+		um processo filho?
+			<p>Processos filhos são processos criados por um processo em execução.</p>
+			<p>O pai pode encerrar o filho quando o mesmo não for mais necessário ou exceder o uso dos recursos que recebeu.</p>
+		</li>
+		<li>O que você entende por <em>Sockets</em>? Quando são utilizados?
+			<p><em>Sockets</em> são pares de IP e porta utilizados para comunição remota entre dois processos.</p>
+		</li>
+		<li>Diferentes processos podem se comunicar entre si? Em caso afirmativo
+		quais são as técnicas utilizadas para prover esta comunicação e em que
+		situações devem ser utilizadas?
+			<p>Sim, técnicas utilizadas envolvem:</p>
+			<ul>
+				<li>Transmissão de mensagens:
+					<p>Útil para a troca de pequenas quantidades de dados, fácil implementação.</p>
+				</li>
+				<li>Memória compartilhada:
+					<p>Usado para troca de grandes volumes de dados. Mais rápido.</p>
+				</li>
+				<li><em>Sockets</em>
+					<p>Explicado no ítem anterior, utilizado para comunicação entre processos.</p>
+				</li>
+			</ul>
+		</li>
+		<li>O que você entende por <em>Threads</em>? Cite três grandes benefícios desta
+		tecnologia.
+			<p><em>Threads</em> são processos leves, pequenas unidades de utilização da CPU. Benefícios:</p>
+			<ul>
+				<li>Muito mais leve que inicializar um processo inteiro</li>
+				<li>Permite que um processo continue funcionando mesmo que uma das <em>threads</em> não esteja respondendo.</li>
+				<li>Permite muito mais paralelismo de execução que um processo.</li>
+			</ul>
+		</li>
+		<li>Quais informações são específicas de uma Thread? E quais informações de
+		um Processo são compartilhadas entre todas as suas Threads?
+			<ul>
+				<li>Informações específicas da <em>thread</em>:
+					<ul>
+						<li>ID</li>
+						<li>PC (<em>program counter</em>)</li>
+						<li>Registradores próprios</li>
+						<li><em>Stack</em> própria</li>
+						<li><em>Heap</em> própria</li>
+					</ul>
+				</li>
+				<li>Informações compartilhadas:
+					<ul>
+						<li><em>Text session</em> (<em>code</em>)</li>
+						<li><em>Data section</em></li>
+						<li>Arquivos abertos</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li>Em um <em>Context Switching</em>, o que é mais fácil, realizar a troca de contexto
+		entre <em>Threads</em> ou a troca de contexto entre Processos? Explique.
+			<p>É mais fácil realizar a troca de contexto de <em>threads</em>, pois informações de processo permanecem as mesmas e não precisam ser recarregadas.</p>
+		</li>
+		<li>Qual a difença entre <em>Threads</em> de Kernel e <em>Threads</em> de Usuário?
+			<p>As <em>threads</em> de kernel são gerenciadas pelo sistema operacional, enquanto que as <em>threads</em> de usuário são criadas em uma <em>library</em> da linguagem de programação pelo usuário, num nível de abstração acima do SO.</p>
+		</li>
+	</ol>
+</body>
+</html>
